@@ -3,6 +3,11 @@
 
 Simple script that can extract content based on keywords
 
+pre_requisite:
+```
+pip intall pandas
+```
+
 It has 4 args:
 
   [-source_file =] the path of the source csv file
