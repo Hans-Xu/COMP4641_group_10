@@ -1,5 +1,5 @@
 # COMP4641_group_10
-## rumorDetect.py
+## rumorDetector.py
 
 Simple script that can extract content based on keywords
 
