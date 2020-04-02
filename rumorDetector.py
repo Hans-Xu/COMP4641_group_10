@@ -16,6 +16,35 @@ def findRumor(source_path: str, keywords: str, destination: str):
     rumor_data.to_csv(destination, date_format='%s', index=False)  
     print('Work done!')    
 
+'''
+# This function can tranlate all content in the list to English
+def translate2En(original_text):
+    result = []
+    illegal_count = 0
+    total = len(original_text)
+    print('total: '+str(total))
+    count = 0.0
+    print_threshold = 0
+    for t in original_text:
+        try:
+            trans = Translator()
+            count += 1
+            if (count/total*10000) > print_threshold:
+                print('process rate: '+ str(print_threshold)+'/10000')
+                print('current count: '+str(count))
+                print('current illegal: '+str(illegal_count))
+                print_threshold += 1
+            temp_res = trans.translate(t)
+        except Exception as e:
+            illegal_count += 1
+            temp_res = t
+        finally:
+            result.append(temp_res)
+    print(illegal_count)
+    print(str(len(original_text)))
+    return result
+'''
+
 if __name__ == "__main__":
     # Create our Argument parser and set its description
     parser = argparse.ArgumentParser(
@@ -40,7 +69,8 @@ if __name__ == "__main__":
     
     parser.add_argument(
         '-rumor_label',
-        help='The label of this rumor'
+        help='The label of this rumor',
+        default = None
     )
     
     parser.add_argument(
