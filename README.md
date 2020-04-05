@@ -18,7 +18,9 @@ It has 4 args:
   
   [-key_words] a list of key words that will be used for searching
   
+  [-search_threshold] the threshold of the number of keywords in a text that should be extracted
+  
 sample use:
 
-  python rumorDetector.py -source_file=sample.csv -rumor_label=test -key_words haha hehe hoho lol XD
+  python rumorDetector.py -source_file=sample.csv -rumor_label=test -search_threshold=3 -key_words haha hehe hoho lol XD 
     
