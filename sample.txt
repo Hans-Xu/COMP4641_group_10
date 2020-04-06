@@ -1,0 +1,9 @@
+hotWeather
+hot,humid,climate,corona,covid,transmit,propagate,weather,temperature,sun
+3
+recover
+recover,corona,covid,catch,life,cure
+3
+breathHolding
+hold,breath,corona,covid,cough,discomfort,confirm,breathholding
+4
