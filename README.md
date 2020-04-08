@@ -8,7 +8,7 @@ pre_requisite:
 pip intall pandas
 ```
 
-It has 4 args:
+It has 7 args:
 
   [-source_file =] the path of the source csv file
   
@@ -34,3 +34,20 @@ non-txt sample use:
   ```
   python rumorDetector.py -source_file=sample.csv -rumor_label=test -search_threshold=3 -key_words haha hehe hoho lol XD 
   ``` 
+
+## rumorDetector_readall.py
+
+This script is a simplified version of rumorDetectors.py but can read all csv files in a folder as source files.
+
+It has only 3 args:
+
+[-s] the folder containing the source csv files
+
+[-o] the folder that place all outputs. The output will be in the folder 'rumors' under the path in -o
+
+[-t] the path of the input txt. The format of txt is the same as rumorDetector.py
+
+sample use:
+```
+rumorDetector_readall.py -s=sample_path -o=sample_out_path -t=sample.txt
+```
