@@ -69,7 +69,7 @@ if __name__ == "__main__":
         description="Script that reads csv data, searches data, and save data",
     )
     # Add the arguments:
-    #   - source_file: the source file we want to read
+    #   - source_file: the source file/catalog we want to read
     #   - txt_input: determine whether use txt file as input parameters or not
     #   - txt_path: the path of the input txt
     #   - output: the path for the output; it should be a file if txt_input is False, and should be a path to a folder if txt_input is True 
