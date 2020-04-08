@@ -43,7 +43,7 @@ It has only 3 args:
 
 [-s] the folder containing the source csv files
 
-[-o] the folder that place all outputs. The output will be in the folder 'rumors' under the path in -o
+[-o] the folder that place all outputs. The output will be in the folder 'rumors' under the path in -o. The default value will be the folder contains rumorDetector_readall.py
 
 [-t] the path of the input txt. The format of txt is the same as rumorDetector.py
 
