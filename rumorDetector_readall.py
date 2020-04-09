@@ -13,7 +13,7 @@ import numpy as np
 # and extract all lines whose text contains key words
 # then save to the distination path
 def findRumor(source_path: str, keywords, destination: str, threshold: int):
-    raw_data = pd.read_csv(source_path, dtype=str)
+    raw_data = pd.read_csv(source_path, dtype=str, error_bad_lines=False)
 
     # extract all the text&quoted text and check the number of keywords they contain
     text = raw_data['text']
