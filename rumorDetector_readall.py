@@ -125,9 +125,8 @@ if __name__ == "__main__":
             d_path = output_path+r_label+'.csv'
             if os.path.isfile(d_path):
                 os.remove(d_path)
-            d_file = f'{d_path}'
             print('Rumor label: '+r_label)
             print('Keywords: '+ str(keywords))
             # Search keywords and extract the information
-            findRumor(csv_file, keywords, d_file, threshold)
+            findRumor(csv_file, keywords, d_path, threshold)
         
