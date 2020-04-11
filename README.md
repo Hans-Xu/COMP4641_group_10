@@ -49,5 +49,20 @@ It has only 3 args:
 
 sample use:
 ```
-rumorDetector_readall.py -s=sample_path -o=sample_out_path -t=sample.txt
+python rumorDetector_readall.py -s=sample_path -o=sample_out_path -t=sample.txt
+```
+
+## EnglishFilter.py
+
+This script can filter out English content in the csv file
+
+2 args:
+
+[-s] the folder containing the source csv file
+
+[-o] (default None) the folder of the output. If is None, the output folder will be made under the source folder.
+
+sample use:
+```
+python EnglishFilter.py -s=sample_path
 ```
