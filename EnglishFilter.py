@@ -12,10 +12,7 @@ from langdetect import detect
 def process(source, dest):
     raw_data = pd.read_csv(source, dtype=str)
     is_text_en = checkEnglish(raw_data['text'])
-    if raw_data['quoted_text'].empty:
-        is_quoted_en = True
-    else:
-        is_quoted_en = checkEnglish(raw_data['quoted_text'])
+    is_quoted_en = checkEnglish(raw_data['quoted_text'])
     en_data = raw_data[is_text_en & is_quoted_en]
     en_data.to_csv(dest, date_format='%s', index=False)
 
@@ -23,7 +20,7 @@ def process(source, dest):
 def checkEnglish(text_list):
     boolean_list = np.empty([len(text_list), 1], dtype = bool)
     for i in range(len(text_list)):
-        if detect(str(text_list[i]))=='en':
+        if str(text_list[i]) == 'nan' or detect(str(text_list[i]))=='en':
             boolean_list[i] = True
         else:
             boolean_list[i] = False
