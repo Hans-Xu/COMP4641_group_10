@@ -12,25 +12,39 @@ import numpy as np
 # This function will read csv file 
 # and extract all lines whose text contains key words
 # then save to the distination path
-def findRumor(source_path: str, keywords, destination: str, threshold: int):
-    raw_data = pd.read_csv(source_path, dtype=str, error_bad_lines=False)
+def findRumor(raw_data, keywords, destination: str, threshold: int):
+    # Change the form of keywords for the input requirement of Pandas.Series.str.contains
+    k_words = keywords[0]
+    for i in range(1, len(keywords)):
+        k_words = k_words+'|'+keywords[i]
 
     # extract all the text&quoted text and check the number of keywords they contain
-    text = raw_data['text']
-    quoted_text = raw_data['quoted_text']
-    valid_text = checkThreshold(text, threshold, keywords)
-    valid_quoted_text = checkThreshold(quoted_text, threshold, keywords)
-
+    text = raw_data[raw_data['text'].str.contains(k_words)].reset_index(drop=True)
+    quoted_text = raw_data[raw_data['quoted_text'].fillna('nan').str.contains(k_words)].reset_index(drop=True)
+    valid_text = checkThreshold(text['text'], threshold, keywords)
+    valid_quoted_text = checkThreshold(quoted_text['quoted_text'], threshold, keywords)
+    
     # extract all the satisfied rows
-    rumor_data = raw_data[np.logical_or(valid_text,valid_quoted_text)]
+    #rumor_data = raw_data[np.logical_or(valid_text,valid_quoted_text)]
+    text_res = text[valid_text]
+    quo_res = quoted_text[valid_quoted_text]
+    if len(quo_res) == 0:
+        rumor_data = text_res
+    elif len(text_res) == 0:
+        rumor_data = quo_res
+    else:
+        rumor_data = pd.merge(text_res,quo_res,left_on='user',how='outer')
 
     # save data
     print('No. of potential rumors: '+ str(rumor_data.shape[0]))
-    rumor_data.to_csv(destination, date_format='%s', index=False)  
+    rumor_data.to_csv(destination, date_format='%s', index=False)
 
 # This function return the boolean form of the text list indicating the number of keywords in the text is over the threshold
 def checkThreshold(text_list, threshold, keywords):
+    print(text_list)
     boolean_list = np.empty([len(text_list), 1], dtype = bool)
+    if len(text_list) == 0:
+        return boolean_list
     for i in range(len(text_list)):
         if countKeyWords(text_list[i], keywords) >= threshold:
             boolean_list[i] = True
@@ -107,12 +121,13 @@ if __name__ == "__main__":
                 threshold = int(line.strip())
                 txt_input.append((r_label, keywords, threshold))
             line_num += 1
-    
+    out_frame = []
     for f in os.listdir(s_path):
         if not f.endswith('.csv'):
             continue
         domain = os.path.abspath(s_path)
         csv_file = os.path.join(domain, f)
+        raw_data = pd.read_csv(csv_file, dtype=str, error_bad_lines=False)
         filename = os.path.basename(csv_file).split('.')[0]
         print('Process '+csv_file)
         output_path = o_path+'/rumors/'
@@ -128,5 +143,7 @@ if __name__ == "__main__":
             print('Rumor label: '+r_label)
             print('Keywords: '+ str(keywords))
             # Search keywords and extract the information
-            findRumor(csv_file, keywords, d_path, threshold)
+            findRumor(raw_data, keywords, d_path, threshold)
+    
+
         
