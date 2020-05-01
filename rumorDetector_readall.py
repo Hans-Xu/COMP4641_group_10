@@ -41,7 +41,7 @@ def findRumor(raw_data, keywords, destination: str, threshold: int):
 
 # This function return the boolean form of the text list indicating the number of keywords in the text is over the threshold
 def checkThreshold(text_list, threshold, keywords):
-    print(text_list)
+    
     boolean_list = np.empty([len(text_list), 1], dtype = bool)
     if len(text_list) == 0:
         return boolean_list
