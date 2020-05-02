@@ -19,7 +19,7 @@ def findRumor(raw_data, keywords, destination: str, threshold: int):
         k_words = k_words+'|'+keywords[i]
 
     # extract all the text&quoted text and check the number of keywords they contain
-    text = raw_data[raw_data['text'].str.contains(k_words)].reset_index(drop=True)
+    text = raw_data[raw_data['text'].fillna('nan').str.contains(k_words)].reset_index(drop=True)
     quoted_text = raw_data[raw_data['quoted_text'].fillna('nan').str.contains(k_words)].reset_index(drop=True)
     valid_text = checkThreshold(text['text'], threshold, keywords)
     valid_quoted_text = checkThreshold(quoted_text['quoted_text'], threshold, keywords)
