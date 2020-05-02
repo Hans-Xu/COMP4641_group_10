@@ -8,6 +8,7 @@ import sys
 import os
 import pandas as pd
 import numpy as np
+import time
 
 # This function will read csv file 
 # and extract all lines whose text contains key words
@@ -125,6 +126,9 @@ if __name__ == "__main__":
                 txt_input.append((r_label, keywords, threshold))
             line_num += 1
     out_frame = []
+    
+    start_time = time.time()
+    
     for f in os.listdir(s_path):
         if not f.endswith('.csv'):
             continue
@@ -147,6 +151,7 @@ if __name__ == "__main__":
             print('Keywords: '+ str(keywords))
             # Search keywords and extract the information
             findRumor(raw_data, keywords, d_path, threshold)
-    
+            
+    print("--- %s seconds ---" % (time.time() - start_time))
 
         
