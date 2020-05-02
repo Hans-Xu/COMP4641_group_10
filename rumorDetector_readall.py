@@ -28,12 +28,14 @@ def findRumor(raw_data, keywords, destination: str, threshold: int):
     #rumor_data = raw_data[np.logical_or(valid_text,valid_quoted_text)]
     text_res = text[valid_text]
     quo_res = quoted_text[valid_quoted_text]
+    print(len(text_res))
+    print(len(quo_res))
     if len(quo_res) == 0:
         rumor_data = text_res
     elif len(text_res) == 0:
         rumor_data = quo_res
     else:
-        rumor_data = pd.merge(text_res,quo_res,left_on='user',how='outer')
+        rumor_data = pd.merge(text_res,quo_res,on='user',how='left')
 
     # save data
     print('No. of potential rumors: '+ str(rumor_data.shape[0]))
