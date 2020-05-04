@@ -20,10 +20,13 @@ def process(source, dest):
 def checkEnglish(text_list):
     boolean_list = np.empty([len(text_list), 1], dtype = bool)
     for i in range(len(text_list)):
-        if str(text_list[i]) == 'nan' or detect(str(text_list[i]))=='en':
-            boolean_list[i] = True
-        else:
-            boolean_list[i] = False
+        try:
+            if str(text_list[i]) == 'nan' or detect(str(text_list[i]))=='en':
+                boolean_list[i] = True
+            else:
+                boolean_list[i] = False  
+        except Exception as e:
+            print(e)
     return boolean_list
 
 if __name__ == "__main__":
