@@ -1,4 +1,19 @@
 # COMP4641_group_10
+
+## nlp_labeling_test.ipynb
+Input: Human-labeled csv
+Outcome: 1)Pick up the model that gives the highest accuracy, then apply this model to predict labels 2)Statistics of labels distribution 3)consufion matrix
+
+Remember to 
+1.markdown which model is used for prediction
+2.screenshot 2) & 3), examples as the following:
+![Alt text](image/labels_distribution.png?raw=true "Title")
+![Alt text](image/confusion_matrix.png?raw=true "Title")
+
+## nlp_labeling_predict.ipynb
+Input: 1) Human-labeled csv (training set) 2)Un-labeled csv (testing set)
+Outcome: human-generated labels
+
 ## rumorDetector.py
 
 Simple script that can extract content based on keywords
