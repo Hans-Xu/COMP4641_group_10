@@ -10,8 +10,9 @@ Outcome: <br/>
 Remember to <br/>
 1.markdown which model is used for prediction<br/>
 2.screenshot 2) & 3), examples as the following:<br/>
-![Alt text](image/label_distribution.png?raw=true "Title" | width=100)
-![Alt text](image/confusion_matrix.png?raw=true "Title" | width=100)
+<img src="./image/label_distribution.png" width="300" height="300">
+<img src="./image/confusion_matrix.png" width="300" height="300">
+
 
 ## nlp_labeling_predict.ipynb
 Input: <br/>
